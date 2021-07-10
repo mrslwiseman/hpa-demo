@@ -11,17 +11,24 @@ This repo exists to demonstrate k8's pod auto scaling, it consists of the follow
 ### Commands
 
 #### Docker
+
 `docker build -t mrslwiseman/nodejs-hello-world:latest .`
+
 `docker push mrslwiseman/nodejs-hello-world:latest`
+
 `docker run -e PORT=8080 -p 8080:8080 mrslwiseman/nodejs-hello-world`
 
-#### Helm`
+#### Helm
+
 `helm install full-coral ./chart`
+
 `helm upgrade full-coral ./chart`
+
 `helm uninstall full-coral`
 
-### Generate load on the server. Watch the deployment scale up
-`RAND=$(shuf -i 0-100000 -n 1); NAME=load-generator$RAND; kubectl run -i --tty $NAME --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://nodejs-hello-world:8080; done"`
+#### Generate load on the server. Watch the deployment scale up
+
+```RAND=$(shuf -i 0-100000 -n 1); NAME=load-generator$RAND; kubectl run -i --tty $NAME --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://nodejs-hello-world:8080; done"```
 
 
 # Issues
